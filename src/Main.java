@@ -75,7 +75,9 @@ public class Main {
 		s=s+"*\t Each parking space is equiped with detection sensor\t\t*\n";
 		s=s+"*\t The basic price per hour is 5$/hour\t\t\t\t*\n";
 		s=s+"*\t To test program:\t\t\t\t\t\t*\n";
-		s=s+"*\t Please enter a fileName. For example day1 \t\t\t*\n\r";
+		s=s+"*\t There are 3 pre-created test file day1.txt,day2.txt, day3.txt \t*\n\r";
+		s=s+"*\t You can create a new file or use the exit test files as listed *\n\r";
+		s=s+"*\t Please enter a fileName. For example day4.txt \t\t\t*\n\r";
 		Scanner keyboard = new Scanner(System.in);
 		System.out.println(s);
 		fileName=keyboard.next();

@@ -1,0 +1,150 @@
+enter
+enter
+exit	18.33	91.80
+exit	14	76
+enter
+enter
+exit	23	121
+exit	2	18
+exit	5	31
+enter
+enter
+exit	5	27
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	1	9
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	3	19
+enter
+exit	23	116
+enter
+enter
+enter
+enter
+enter
+enter
+exit	12	58
+enter
+exit	17	92
+enter
+enter
+enter
+exit	12	63
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	5	35
+enter
+enter
+enter
+enter
+exit	11	53
+enter
+exit	10	50
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	24	119
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	8	48
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	17	84
+exit	3	19
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	1	7
+enter
+enter
+exit	16	79
+enter
+exit	18	91
+enter
+enter
+enter
+enter
+exit	12	65
+enter
+enter
+enter
+exit	16	83
+exit	19	103
+enter
+enter
+enter
+exit	20	97
+enter
+enter
+enter
+enter
+enter
+enter
+exit	2	18
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	2	18
+exit	5	26
+enter
