@@ -1,6 +1,6 @@
 
 public class Lot {
-	private boolean detectionSensor=false;;
+	private boolean detectionSensor;
 	private int lotID;
 	static int totalLot=0;
 	
@@ -10,14 +10,23 @@ public class Lot {
 	
 	
 	public Lot() {
-		lotID=totalLot;
+		lotID=totalLot-1;
+		detectionSensor=false;;
 	}
 	
-	void setLotID(int ID) {
+	public void setLotID(int ID) {
 		lotID=ID;
-	};
-	int getLotID;
-	boolean isOccupied() {
+	}
+	
+
+	
+	public boolean isOccupied() {
 		return detectionSensor;
+	}
+	public int getLotID() {
+		return lotID;
+	}
+	public void setOccupied(boolean available) {
+		detectionSensor=available;
 	}
 }
