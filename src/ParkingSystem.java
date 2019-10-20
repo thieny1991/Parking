@@ -54,6 +54,9 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	
 	
 	
+	/**Constructor
+	 * @param MAX
+	 */
 	public ParkingSystem(int MAX) {
 		super("PARKING SYSTEM");
 		this.MAX_NUM_OF_LOTS=MAX;
@@ -70,6 +73,10 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	
  
 	}
+	/**Constructor 
+	 * @param MAX
+	 * @param price
+	 */
 	public ParkingSystem(int MAX,double price) {
 		super("PARKING SYSTEM");
 		emptyLots=MAX_NUM_OF_LOTS;
@@ -80,6 +87,9 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_LOTS);
 		createFrame();
 	}
+	/**
+	 * Default constructor
+	 */
 	public ParkingSystem() {
 		super("PARKING SYSTEM");
 		MAX_NUM_OF_LOTS=100;
@@ -92,57 +102,11 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		createFrame();
 	}
 	
-	
-	public  void carCheckIn() {
-		enter.doClick();
-		//report.doClick();
-		
-		checkInMachine.checkIn();
-		accounter.getReport(revenue);
-		
-		if(checkInMachine.checkIn(inMessage))
-				changeLotStatus(findSpot());
-		terminal();
-	}
-	public  void carCheckOut(double amount, double duration) {
-		exit.doClick();
-		checkOutMachine.checkOut(amount, duration);
-		
-		//report.doClick();
-		accounter.getReport(revenue);
-		
-		if(checkOutMachine.checkOut(amount,duration,outMessage))
-			changeLotStatus(carLeaveID());
-		terminal();
-	}
+
 	
 	/**
-	 * This function shows the current status of parking lot
+	 * GUI
 	 */
-	public void terminal() {
-		String s="\tIN: "+checkInMachine.getTotalEnter();
-		s=s+"\tOUT: "+checkOutMachine.getTotalExit();
-		
-		System.out.println(s);
-		flowStats.setText(s);
-		Font font = new Font("Arial", Font.BOLD, 15);
-		flowStats.setFont(font);
-		flowStats.setForeground(Color.BLUE);
-		s="           Empty Lots: "+checkInMachine.getEmptyLots();
-		s=s+"   ----   Occupied Lots:"+checkInMachine.getOccupied();
-		terminal.setFont(font);
-		terminal.setForeground(Color.BLACK);
-		terminal.setText(s);
-		
-	}
-	public double getBasicPrice() {
-		return accounter.getPrice();
-	}
-	public double getLotID(int i) {
-		return lots[i].getLotID();
-	}
-	
-	
 	protected void createFrame() {
 		this.setPreferredSize(new Dimension(1500,650));
 		button = new JButton[MAX_NUM_OF_LOTS];
@@ -205,6 +169,64 @@ public class ParkingSystem extends JFrame implements ActionListener {
                 }
         );
 	}
+	
+	
+	public  void carCheckIn() {
+		//inMessage.setText("Please");
+		enter.doClick();
+		//report.doClick();
+		
+		checkInMachine.checkIn();
+		accounter.getReport(revenue);
+		
+		if(checkInMachine.checkIn(inMessage))
+				changeLotStatus(findSpot());
+		terminal();
+	}
+	public  void carCheckOut(double amount, double duration) {
+		exit.doClick();
+		checkOutMachine.checkOut(amount, duration);
+		
+		//report.doClick();
+		accounter.getReport(revenue);
+		
+		if(checkOutMachine.checkOut(amount,duration,outMessage))
+			changeLotStatus(carLeaveID());
+		terminal();
+	}
+	
+	/**
+	 * This function shows the current status of parking lot
+	 * it will show the number of empty spots,occupied spot;
+	 * it also will count how many cars have checked in,
+	 * and how many car have checked out during the day.
+	 */
+	public void terminal() {
+		String s="\tIN: "+checkInMachine.getTotalEnter();
+		s=s+"\tOUT: "+checkOutMachine.getTotalExit();
+		
+		System.out.println(s);
+		flowStats.setText(s);
+		Font font = new Font("Arial", Font.BOLD, 15);
+		flowStats.setFont(font);
+		flowStats.setForeground(Color.BLUE);
+		s="           Empty Lots: "+checkInMachine.getEmptyLots();
+		s=s+"   ----   Occupied Lots:"+checkInMachine.getOccupied();
+		terminal.setFont(font);
+		terminal.setForeground(Color.BLACK);
+		terminal.setText(s);
+		
+	}
+	public double getBasicPrice() {
+		return accounter.getPrice();
+	}
+	public double getLotID(int i) {
+		return lots[i].getLotID();
+	}
+	
+	/**This function changes the color of the sensor in the parking lot
+	 * @param ID
+	 */
 	public void changeLotStatus(int ID) {
 		if(button[ID].getBackground()==Color.GREEN) {
 			button[ID].setBackground(Color.RED);

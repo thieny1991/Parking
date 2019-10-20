@@ -35,13 +35,13 @@ public class EntranceManager{
 	}
 	public boolean checkIn(JTextArea t) {
 		t.setText("");
-		String s=("   Check In:");
+		String s=("  Check In:");
 		if((enter-exit)<this.MAX) {
 			//issueTicket(t);
 			//openGate();
 			//closeGate();
 			enter++;
-			s=s+ "Approved! Take your ticket and keep it safe";
+			s=s+ "Approved!\n\tTake your ticket and keep it safe";
 			t.setText(s);
 			return true;
 		}
@@ -78,7 +78,7 @@ public class EntranceManager{
 		t.setText("");
 		DecimalFormat f=new DecimalFormat("##.00");
 		String s="  Check Out: Duration "+hour+"  Balance "+fManager.getBalance(hour);
-		s=s+"\n  Paid Amount "+amount;
+		s=s+"\n\tPaid Amount "+amount;
 		double change=amount-fManager.getBalance(hour);
 		
 		if((enter-exit)>0 && change>=0) {
@@ -87,16 +87,16 @@ public class EntranceManager{
 			closeGate();
 			exit++;
 			if(change>0) {
-			s=s+" Approved! Your change is "+ f.format(change);
+			s=s+"\n\tApproved! Your change is "+ f.format(change);
 			t.setText(s);}
 			else if(change==0.0) {
-				s=s+"\t Approved! Drive Safe!";
+				s=s+"\n\tApproved! Drive Safe!";
 				t.setText(s);
 			}
 			return true;
 		}
 		else {
-			s=s+ "\n  Denied. Your remaining balance is "+ f.format(change);
+			s=s+ "\n\tDenied. Your remaining balance is "+ f.format(change);
 			t.setText(s);
 			return false;
 		}
@@ -105,7 +105,7 @@ public class EntranceManager{
 		System.out.println("Please take the ticket and keep it safe");
 	}
 	public void issueTicket(JTextArea t) {
-		t.setText("Please take the ticket and keep it safe.Gate is unlocked");
+		t.setText("\n  Please take the ticket and keep it safe.Gate is unlocked");
 	}
 	public int getTotalEnter() {
 		return enter;

@@ -39,22 +39,6 @@ public class FinanceManager {
 		this.revenue=this.revenue-r;
 	}
 	
-	/*public boolean processPayment(double amount,double hours) {
-		DecimalFormat f = new DecimalFormat("##.00");
-		double price = this.pricePerHour*hours;
-		System.out.println("Balance = "+price);
-		System.out.println("Paid Amount = "+amount);
-		if(amount==price)
-			return true;
-		else if(amount>price) {
-			System.out.println("Please take the change"+f.format(amount-price));
-			return true;
-		}
-		else {
-			System.out.println("Please pay the remaining balance is"+f.format(amount-price));
-			return false;
-		}
-	}*/
 	
 	public double processPayment(double amount,double hours) {
 		DecimalFormat f = new DecimalFormat("##.00");

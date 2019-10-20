@@ -1,3 +1,10 @@
+/**
+ * Description: This is a simple program that demonstrate how a 
+ * parking system work using OOP
+ * Class:Fall-COSC 4353 Assignment3
+ * @author nguyen
+ * @version 10/15/2019
+ */
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,11 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-
-
-
-
 
 /**ENTRY TO PROGRAM
  * @author nguyen
@@ -72,6 +74,9 @@ public class Main {
 	}
 	
 	
+	/**This function prompt to user and get a file name from user
+	 * @return String is a name of file
+	 */
 	static String getFileName() {
 		String s="";
 		String fileName;
@@ -83,6 +88,11 @@ public class Main {
 	}
 	
 	
+	/**This function prompt to user and get an integer number 
+	 * which is a total of cars in and out
+	 * @return
+	 * @throws IOException
+	 */
 	static int getFlows() throws IOException {
 		Scanner keyboard=new Scanner(System.in);
 		int flow=0;
@@ -104,6 +114,10 @@ public class Main {
 	 * @param ps
 	 * @param day
 	 */
+	/**
+	 * @param ps
+	 * @param day
+	 */
 	static void startNewDay(ParkingSystem ps, File day) {
 		System.out.println("-------------------Start new day----------------\n\n");
 		String wait="";
@@ -116,7 +130,7 @@ public class Main {
 			
 				wait=sc.next();
 				try {
-					Thread.sleep(100);
+					Thread.sleep(120);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
