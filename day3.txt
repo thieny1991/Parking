@@ -1,28 +1,18 @@
+exit	14.83	81.68
+enter
+enter
+enter
+exit	10	50
+exit	7	44
 enter
 enter
 enter
 enter
+exit	7	32
 enter
 enter
 enter
-exit	5.75	29.16
-enter
-enter
-enter
-enter
-exit	9	53
-enter
-enter
-enter
-enter
-enter
-exit	6	32
-enter
-enter
-enter
-enter
-enter
-exit	2	11
+exit	13	63
 enter
 enter
 enter
@@ -31,189 +21,129 @@ enter
 enter
 enter
 enter
+exit	7	40
+exit	6	36
+exit	19	98
+enter
+enter
+enter
+exit	16	90
+enter
+enter
+exit	8	50
 exit	20	102
+exit	22	116
+enter
+exit	22	110
+exit	14	74
+enter
+exit	15	82
 enter
 enter
 enter
-enter
-enter
-enter
-exit	3	23
-enter
-enter
-enter
-enter
-enter
-exit	24	123
-exit	13	69
 enter
 enter
 enter
 enter
 exit	9	50
+exit	15	75
 enter
 enter
-exit	5	30
 enter
-exit	18	97
-exit	16	88
-exit	18	93
+exit	4	31
 enter
 enter
 enter
 enter
 enter
 enter
-exit	5	27
 enter
+exit	12	65
 enter
 enter
-exit	7	40
-exit	20	102
 enter
 enter
 enter
-exit	22	109
 enter
+exit	19	101
 enter
+exit	8	37
 enter
+exit	13	68
 enter
 enter
+exit	6	31
 enter
 enter
 enter
-exit	23	116
+exit	12	67
+exit	6	29
 enter
+exit	15	82
 enter
+exit	4	23
 enter
-exit	7	41
+exit	3	13
 enter
 enter
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	3	16
-enter
-exit	6	35
-enter
-enter
-exit	6	36
-enter
-enter
-exit	10	53
-enter
-exit	7	40
-enter
-exit	10	51
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	10	52
-enter
-enter
-enter
-exit	13	69
-exit	16	81
-enter
-enter
-exit	23	119
-enter
-enter
-enter
-exit	11	62
-enter
-enter
-enter
-exit	23	113
-enter
-enter
-exit	6	38
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	22	118
-enter
-exit	17	91
-enter
-enter
-enter
-enter
-enter
-enter
-exit	14	77
-exit	7	40
-enter
-enter
-exit	22	109
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	8	48
-exit	2	10
-enter
-enter
-enter
-enter
-enter
-enter
+exit	6	41
+exit	10	50
 enter
 enter
 enter
 enter
 exit	15	81
-exit	9	50
-enter
-enter
-enter
-enter
-exit	6	37
-exit	13	65
-exit	14	78
-enter
-enter
-enter
-exit	5	29
-enter
-enter
-exit	3	16
 enter
 enter
 enter
 enter
 enter
-exit	19	96
-exit	6	33
+enter
+exit	1	9
+enter
+exit	18	97
+enter
+enter
+enter
+enter
+enter
+enter
+enter
+exit	5	31
+enter
+enter
+enter
+exit	18	96
+exit	7	43
+exit	15	80
+enter
+enter
+exit	4	21
+exit	24	120
+exit	11	52
 enter
 exit	16	83
-exit	12	63
+enter
+exit	23	120
+enter
+exit	7	41
+enter
+enter
+exit	1	4
 enter
 enter
 enter
-exit	1	7
+enter
+exit	6	39
+exit	4	27
 enter
 enter
 enter
 enter
 enter
-exit	17	87
+enter
+enter
+exit	4	20
 enter
 enter
 enter

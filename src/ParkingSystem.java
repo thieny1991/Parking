@@ -144,7 +144,7 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	
 	
 	protected void createFrame() {
-		this.setPreferredSize(new Dimension(1500,550));
+		this.setPreferredSize(new Dimension(1500,650));
 		button = new JButton[MAX_NUM_OF_LOTS];
 		Font font = new Font("Arial", Font.BOLD, 15);
 		revenue.setFont(font);
@@ -170,7 +170,7 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	        bottom_panel.add(button[i]);
 	    }
 		getContentPane().add(splitPane,BorderLayout.CENTER);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack(); 						//no idea what this is but without it, menu bar won't display on the frame
 		//top_panel.setLayout(new GridLayout());
 		top_panel.setLayout(new GridLayout(4,2));

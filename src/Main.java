@@ -25,17 +25,6 @@ public class Main {
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
-		int flowsInOut=0;
-		//------------create 3 test file as request ----------------
-		String fileName=getFileName();
-		try {
-			flowsInOut=getFlows();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	
 		try {
 				//just for testing purpose. We can change to SystemLookAndFeel Later
 	            final UIManager.LookAndFeelInfo[] infos =
@@ -50,43 +39,58 @@ public class Main {
 	        } catch (Exception system) {
 	            system.printStackTrace();
 	        }
+		
+		welcome();
+		String fileName=getFileName();
 		ParkingSystem ps= new ParkingSystem(MAX_NUM_OF_LOTS);
 		ps.show();
 		double price = ps.getBasicPrice();
-		
+		int flowsInOut=0;
+
 		File day=new File(fileName);
-		if(createFlowOfCars(day,flowsInOut,price)) {
-			System.out.println("Create test file success");
+		boolean exits=day.exists();
+		if(exits&&day.length()!=0) {
+			System.out.println("Start a new day working");
+				startNewDay(ps,day);
 		}
-		else
-			System.out.println("Fail to create the test file ");
-		startNewDay(ps,day);
-		
-		
+		else {
+				System.out.println("Test file is not exists or is empty. Creating a new test file.");
+				try {
+					flowsInOut=getFlows();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(createFlowOfCars(day,flowsInOut,price)) {
+					System.out.println("Create test file success");
+				}
+				else
+					System.out.println("Fail to create the test file ");
+				
+				startNewDay(ps,day);
+		}
 	}
 	
 	
 	static String getFileName() {
-		String s;
+		String s="";
 		String fileName;
-		s="**************************WELCOME TO MY PROGRAM**************************\n";
-		s=s+"*\t This program will be able to generate a random test file\t*\n";
-		s=s+"*\t Assumming that this parking has 100 parking lots\t\t*\n";
-		s=s+"*\t Each parking space is equiped with detection sensor\t\t*\n";
-		s=s+"*\t The basic price per hour is 5$/hour\t\t\t\t*\n";
-		s=s+"*\t To test program:\t\t\t\t\t\t*\n";
-		s=s+"*\t There are 3 pre-created test file day1.txt,day2.txt, day3.txt \t*\n\r";
-		s=s+"*\t You can create a new file or use the exit test files as listed *\n\r";
-		s=s+"*\t Please enter a fileName. For example day4.txt \t\t\t*\n\r";
-		Scanner keyboard = new Scanner(System.in);
+		s=s+"*\t Please enter a fileName. For example day6.txt \t\t\t*\n\r";
 		System.out.println(s);
+		Scanner keyboard = new Scanner(System.in);
 		fileName=keyboard.next();
 		return fileName;
 	}
+	
+	
 	static int getFlows() throws IOException {
 		Scanner keyboard=new Scanner(System.in);
 		int flow=0;
-		System.out.println("* Please enter how many cars will be in and out.For example 200:\t*\n\r");
+		System.out.println("* Please enter how many cars will be in and out.For example 300:\t*\n\r");
+		while(!keyboard.hasNextInt()) {
+			System.out.println("\t\tFlow of in and out cars should be an int\n");
+			keyboard.nextLine();
+		}
 		flow=keyboard.nextInt();
 		System.out.println("**********************************START PROGRAM*********************************\n");
 		return flow;
@@ -105,8 +109,6 @@ public class Main {
 		String wait="";
 		double duration=0;
 		double paidAmount=0;
-		int a=0;
-		int b=0;
 		try {
 			Scanner sc=new Scanner(day);
 			
@@ -122,14 +124,12 @@ public class Main {
 				
 				if(wait.equals("enter")) {
 					ps.carCheckIn();
-					a++;
 				}
 				else if(wait.equals("exit")) {
 				
 					duration=sc.nextDouble();
 					paidAmount=sc.nextDouble();
 					ps.carCheckOut(paidAmount,duration);
-					b++;
 				}
 				
 			}
@@ -137,7 +137,6 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("a= "+a+"b= "+b);
 	}
 	/**This function generates a test file
 	 * @param file
@@ -163,7 +162,7 @@ public class Main {
 	            // Write in file
 	            int isEnter=0;
 	            for(int i=0; i<flows;i++) {
-	            	isEnter= random.nextInt(4);
+	            	isEnter= random.nextInt(3);
 	            	if(isEnter==0 && exit<=enter) {
 	            		exit++;
 	            		double duration = randomDouble(0.5,24);
@@ -177,7 +176,7 @@ public class Main {
 	            		enter++;
 	            	}
 	            }
-	          
+	      
 	            bw.close();
 	            return true;
 	        }
@@ -193,5 +192,17 @@ public class Main {
 	    }
 	    Random r = new Random();
 	    return min + (max - min) * r.nextDouble();
+	}
+	static void welcome() {
+		String s="";
+		s="**************************WELCOME TO MY PROGRAM**************************\n";
+		s=s+"*\t This program will be able to generate a random test file\t*\n";
+		s=s+"*\t Assumming that this parking has 100 parking lots\t\t*\n";
+		s=s+"*\t Each parking space is equiped with detection sensor\t\t*\n";
+		s=s+"*\t The basic price per hour is 5$/hour\t\t\t\t*\n";
+		s=s+"*\t To test program:\t\t\t\t\t\t*\n";
+		s=s+"*\t There are 5 pre-created test file day1.txt,day2.txt and so on \t*\n\r";
+		s=s+"*\t You can create a new file or use the exit test files as listed *\n\r";
+		System.out.print(s);
 	}
 }

@@ -24,8 +24,8 @@ public class EntranceManager{
 		System.out.println("----------------------Check In--------------------");
 		if((enter-exit)<this.MAX) {
 			issueTicket();
-			openGate();
-			closeGate();
+			//openGate();
+			//closeGate();
 			
 		}
 		else {
@@ -38,8 +38,8 @@ public class EntranceManager{
 		String s=("   Check In:");
 		if((enter-exit)<this.MAX) {
 			//issueTicket(t);
-			openGate();
-			closeGate();
+			//openGate();
+			//closeGate();
 			enter++;
 			s=s+ "Approved! Take your ticket and keep it safe";
 			t.setText(s);
