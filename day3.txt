@@ -1,150 +1,40 @@
-exit	14.83	81.68
-enter
-enter
-enter
-exit	10	50
-exit	7	44
-enter
-enter
-enter
-enter
-exit	7	32
-enter
-enter
-enter
-exit	13	63
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	7	40
-exit	6	36
-exit	19	98
-enter
-enter
-enter
-exit	16	90
-enter
-enter
-exit	8	50
-exit	20	102
-exit	22	116
-enter
-exit	22	110
-exit	14	74
-enter
-exit	15	82
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	9	50
-exit	15	75
-enter
-enter
-enter
-exit	4	31
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	12	65
-enter
-enter
-enter
-enter
-enter
-enter
-exit	19	101
-enter
-exit	8	37
-enter
-exit	13	68
-enter
-enter
-exit	6	31
-enter
-enter
-enter
-exit	12	67
-exit	6	29
-enter
-exit	15	82
-enter
-exit	4	23
-enter
-exit	3	13
-enter
-enter
-exit	6	41
-exit	10	50
-enter
-enter
-enter
-enter
-exit	15	81
-enter
-enter
-enter
-enter
-enter
-enter
-exit	1	9
-enter
-exit	18	97
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	5	31
-enter
-enter
-enter
-exit	18	96
-exit	7	43
-exit	15	80
-enter
-enter
-exit	4	21
-exit	24	120
-exit	11	52
-enter
-exit	16	83
-enter
-exit	23	120
-enter
-exit	7	41
-enter
-enter
-exit	1	4
-enter
-enter
-enter
-enter
-exit	6	39
-exit	4	27
-enter
-enter
-enter
-enter
-enter
-enter
-enter
-exit	4	20
-enter
-enter
-enter
-enter
+enter	Gated	1
+enter	Ungated	1
+enter	LA
+enter	Gated	0
+enter	Ungated	1
+enter	LA
+enter	Garage	0
+enter	Garage	0
+enter	LA
+enter	LA
+enter	Garage	1
+enter	LA
+enter	Garage	0
+exit	Garage	0	7.29	79.47
+enter	LA
+enter	Gated	0
+exit	Garage	1	19	189
+exit	Ungated	0	15	48
+exit	Gated	1	23	112
+enter	LA
+exit	Garage	0	3	28
+enter	Gated	0
+enter	LA
+exit	Gated	1	15	79
+enter	Ungated	1
+enter	LA
+enter	Ungated	0
+enter	LA
+enter	Gated	0
+enter	Garage	1
+enter	LA
+exit	Garage	1	11	113
+exit	Gated	0	22	113
+enter	Ungated	0
+exit	Garage	0	8	80
+exit	Garage	1	14	138
+exit	Gated	0	24	116
+enter	LA
+exit	Garage	0	2	18
+enter	Garage	0

@@ -28,10 +28,10 @@ import javax.swing.JTextPane;
 public class ParkingSystem extends JFrame implements ActionListener {
 	//---------------------------------------------gui -----------------
 	
-	public static int MAX_NUM_OF_LOTS=100;
-	int emptyLots;
-	int occupiedLots;
-	private Lot[] lots;
+	public static int MAX_NUM_OF_parkingSpots=100;
+	int emptyparkingSpots;
+	int occupiedparkingSpots;
+	private Lot[] parkingSpots;
 	protected EntranceManager checkInMachine;
 	protected EntranceManager checkOutMachine;
 	private FinanceManager accounter;
@@ -39,7 +39,7 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	private JSplitPane splitPane= new JSplitPane();
 	private JPanel top_panel = new JPanel();
 	private JPanel bottom_panel = new JPanel();
-	private int numLots;
+	private int numparkingSpots;
 	private JButton[] button;
 	private JButton enter= new JButton("Check In");
 
@@ -59,19 +59,17 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	 */
 	public ParkingSystem(int MAX) {
 		super("PARKING SYSTEM");
-		this.MAX_NUM_OF_LOTS=MAX;
-		emptyLots=MAX_NUM_OF_LOTS;
-		occupiedLots=0;
-		lots= new Lot[MAX_NUM_OF_LOTS];
-		for (int i=0;i<MAX_NUM_OF_LOTS;i++) {
-			lots[i]=new Lot();
+		this.MAX_NUM_OF_parkingSpots=MAX;
+		emptyparkingSpots=MAX_NUM_OF_parkingSpots;
+		occupiedparkingSpots=0;
+		parkingSpots= new Lot[MAX_NUM_OF_parkingSpots];
+		for (int i=0;i<MAX_NUM_OF_parkingSpots;i++) {
+			parkingSpots[i]=new Lot();
 		}
 		accounter= new FinanceManager();
-		checkInMachine = new EntranceManager(accounter,MAX_NUM_OF_LOTS);
-		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_LOTS);
+		checkInMachine = new EntranceManager(accounter,MAX_NUM_OF_parkingSpots);
+		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_parkingSpots);
 		createFrame();
-	
- 
 	}
 	/**Constructor 
 	 * @param MAX
@@ -79,12 +77,12 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	 */
 	public ParkingSystem(int MAX,double price) {
 		super("PARKING SYSTEM");
-		emptyLots=MAX_NUM_OF_LOTS;
-		occupiedLots=0;
-		lots= new Lot[MAX_NUM_OF_LOTS];
+		emptyparkingSpots=MAX_NUM_OF_parkingSpots;
+		occupiedparkingSpots=0;
+		parkingSpots= new Lot[MAX_NUM_OF_parkingSpots];
 		accounter= new FinanceManager(price);
-		checkInMachine = new EntranceManager(accounter,MAX_NUM_OF_LOTS);
-		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_LOTS);
+		checkInMachine = new EntranceManager(accounter,MAX_NUM_OF_parkingSpots);
+		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_parkingSpots);
 		createFrame();
 	}
 	/**
@@ -92,13 +90,13 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	 */
 	public ParkingSystem() {
 		super("PARKING SYSTEM");
-		MAX_NUM_OF_LOTS=100;
-		emptyLots=MAX_NUM_OF_LOTS;
-		occupiedLots=0;
-		lots= new Lot[MAX_NUM_OF_LOTS];
+		MAX_NUM_OF_parkingSpots=100;
+		emptyparkingSpots=MAX_NUM_OF_parkingSpots;
+		occupiedparkingSpots=0;
+		parkingSpots= new Lot[MAX_NUM_OF_parkingSpots];
 		accounter= new FinanceManager();
-		checkInMachine = new EntranceManager(accounter,MAX_NUM_OF_LOTS);
-		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_LOTS);
+		checkInMachine = new EntranceManager(accounter,MAX_NUM_OF_parkingSpots);
+		checkOutMachine= new EntranceManager(accounter,MAX_NUM_OF_parkingSpots);
 		createFrame();
 	}
 	
@@ -109,7 +107,7 @@ public class ParkingSystem extends JFrame implements ActionListener {
 	 */
 	protected void createFrame() {
 		this.setPreferredSize(new Dimension(1500,650));
-		button = new JButton[MAX_NUM_OF_LOTS];
+		button = new JButton[MAX_NUM_OF_parkingSpots];
 		Font font = new Font("Arial", Font.BOLD, 15);
 		revenue.setFont(font);
 		revenue.setForeground(Color.RED);
@@ -127,8 +125,8 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		splitPane.setBottomComponent(bottom_panel);
 		
 		
-		numLots=MAX_NUM_OF_LOTS;
-		for(int i = 0; i < numLots; ++i){
+		numparkingSpots=MAX_NUM_OF_parkingSpots;
+		for(int i = 0; i < numparkingSpots; ++i){
 			button[i]=new JButton("L"+i);
 	        button[i].setBackground(Color.GREEN);
 	        bottom_panel.add(button[i]);
@@ -180,7 +178,7 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		accounter.getReport(revenue);
 		
 		if(checkInMachine.checkIn(inMessage))
-				changeLotStatus(findSpot());
+				changeparkingSpotstatus(findSpot());
 		terminal();
 	}
 	public  void carCheckOut(double amount, double duration) {
@@ -191,7 +189,7 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		accounter.getReport(revenue);
 		
 		if(checkOutMachine.checkOut(amount,duration,outMessage))
-			changeLotStatus(carLeaveID());
+			changeparkingSpotstatus(carLeaveID());
 		terminal();
 	}
 	
@@ -210,8 +208,8 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		Font font = new Font("Arial", Font.BOLD, 15);
 		flowStats.setFont(font);
 		flowStats.setForeground(Color.BLUE);
-		s="           Empty Lots: "+checkInMachine.getEmptyLots();
-		s=s+"   ----   Occupied Lots:"+checkInMachine.getOccupied();
+		s="           Empty parkingSpots: "+checkInMachine.getEmptySpots();
+		s=s+"   ----   Occupied parkingSpots:"+checkInMachine.getOccupied();
 		terminal.setFont(font);
 		terminal.setForeground(Color.BLACK);
 		terminal.setText(s);
@@ -221,13 +219,13 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		return accounter.getPrice();
 	}
 	public double getLotID(int i) {
-		return lots[i].getLotID();
+		return parkingSpots[i].getLotID();
 	}
 	
 	/**This function changes the color of the sensor in the parking lot
 	 * @param ID
 	 */
-	public void changeLotStatus(int ID) {
+	public void changeparkingSpotstatus(int ID) {
 		if(button[ID].getBackground()==Color.GREEN) {
 			button[ID].setBackground(Color.RED);
 		}
@@ -255,9 +253,9 @@ public class ParkingSystem extends JFrame implements ActionListener {
 		Random r=new Random();
 		int ID=-1;
 		for(int i=0;i<10;i++) {
-			ID=r.nextInt(MAX_NUM_OF_LOTS);
-			if(!lots[ID].isOccupied()) {
-				lots[ID].setOccupied(true);
+			ID=r.nextInt(MAX_NUM_OF_parkingSpots);
+			if(!parkingSpots[ID].isOccupied()) {
+				parkingSpots[ID].setOccupied(true);
 				break;
 			}
 			else
@@ -268,9 +266,9 @@ public class ParkingSystem extends JFrame implements ActionListener {
 			return ID;
 		}
 		else {
-			for(int i=0;i<MAX_NUM_OF_LOTS;i++) {
-				if(!lots[i].isOccupied()) {
-					lots[i].setOccupied(true);
+			for(int i=0;i<MAX_NUM_OF_parkingSpots;i++) {
+				if(!parkingSpots[i].isOccupied()) {
+					parkingSpots[i].setOccupied(true);
 					ID=i;
 					break;
 				}
@@ -290,9 +288,9 @@ public int carLeaveID() {
 		Random r=new Random();
 		int ID=-1;
 		for(int i=0;i<20;i++) {
-			ID=r.nextInt(MAX_NUM_OF_LOTS);
-			if(this.lots[ID].isOccupied()) {
-				this.lots[ID].setOccupied(false);
+			ID=r.nextInt(MAX_NUM_OF_parkingSpots);
+			if(this.parkingSpots[ID].isOccupied()) {
+				this.parkingSpots[ID].setOccupied(false);
 				
 				break;
 			}
@@ -304,9 +302,9 @@ public int carLeaveID() {
 			return ID;
 		}
 		else {
-			for(int i=0;i<MAX_NUM_OF_LOTS;i++) {
-				if(this.lots[i].isOccupied()) {
-					this.lots[i].setOccupied(false);
+			for(int i=0;i<MAX_NUM_OF_parkingSpots;i++) {
+				if(this.parkingSpots[i].isOccupied()) {
+					this.parkingSpots[i].setOccupied(false);
 					ID=i;
 					break;
 				}

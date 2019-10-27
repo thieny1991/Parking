@@ -1,4 +1,5 @@
 import java.text.DecimalFormat;
+import java.util.Random;
 
 import javax.swing.JTextArea;
 
@@ -6,33 +7,41 @@ import javax.swing.JTextArea;
 public class EntranceManager{
 	static FinanceManager fManager;
 	static int MAX;
-	private static int enter=0;
-	private static int exit=0;
+	private int enter=0;
+	private int exit=0;
 	private boolean blockGate;
 	public EntranceManager(FinanceManager fManager,int num) {
 		blockGate=true;
 		this.fManager=fManager;
 		this.MAX=num;
 	}
+	
+	
 	void openGate() {
-		System.out.println("Gate is unblocked");
+		System.out.println("\tGate is unblocked");
 	}
+	
 	void closeGate() {
-		System.out.println("Gate is now blocked");
+		System.out.println("\tGate is now blocked");
 	}
+	
 	void checkIn() {
-		System.out.println("----------------------Check In--------------------");
+		System.out.println("\t----------------------Check In--------------------");
 		if((enter-exit)<this.MAX) {
 			issueTicket();
-			//openGate();
-			//closeGate();
+			openGate();
+			enter++;
+			closeGate();
+			System.out.println("\t--------------------------------------------------");
 			
 		}
 		else {
-			System.out.println("I AM SORRY! OUR PARKING LOTS ARE FULL");
-			System.out.println("--------------------------------------------------");
+			System.out.println("\tI AM SORRY! OUR PARKING LOTS ARE FULL");
+			System.out.println("\t--------------------------------------------------");
 		}
 	}
+	
+	
 	public boolean checkIn(JTextArea t) {
 		t.setText("");
 		String s=("  Check In:");
@@ -40,8 +49,8 @@ public class EntranceManager{
 			//issueTicket(t);
 			//openGate();
 			//closeGate();
-			enter++;
-			s=s+ "Approved!\n\tTake your ticket and keep it safe";
+			//enter++;
+			s=s+ "\tApproved!\n\tTake your ticket and keep it safe";
 			t.setText(s);
 			return true;
 		}
@@ -51,30 +60,80 @@ public class EntranceManager{
 			return false;
 		}
 	}
-	public void checkOut(double amount,double hour) {
-		DecimalFormat f=new DecimalFormat("##.00");
-		System.out.println("----------------------Check Out-------------------");
-		double change=fManager.processPayment(amount,hour);
-		if((enter-exit)>0 &&change>=0 ) {
-			
-			openGate();
-			closeGate();
-			//exit++;
-			if((change)>0)
-				System.out.println("\tApproved!\n Your change is "+f.format(change));
-			else 
-				System.out.println("\tApproved!\n");
+
+	
+	public void checkOut(double amount,double hour,double discount) {
+		System.out.println("\t----------------------Check Out-------------------");
+		if(enter<=exit) {
+			System.out.println("\tHmm! There is no car in this parking lot.");
+			System.out.println("\t--------------------------------------------------");
+			return;
 		}
+		DecimalFormat f=new DecimalFormat("##.00");
+		
+		double change=fManager.processPayment(amount,hour,discount);
+		String s="\t";
+		if((enter-exit)>0 && change>=0) {
+				exit++;
+				if(change>0) {
+				s=s+"\n\t\tApproved! Your change is "+ f.format(change);
+				System.out.println(s);
+				}
+				else if(change==0.0) {
+					s=s+"\n\t\tApproved! Drive Safe!";
+					System.out.println(s);
+				}
+				openGate();
+				closeGate();
+				System.out.println("\t--------------------------------------------------");
+			
+			}
+		
 		else {
-			System.out.println("\nYour remaining balance is"+ f.format(change));
-			System.out.println("\nGate remains blocked");
-			System.out.println("--------------------------------------------------\n");
+			s=s+ "\n\tDenied. Your remaining balance is "+ f.format(change);
+			System.out.println(s);
+			System.out.println("\tGate remains blocked");
+			System.out.println("\t--------------------------------------------------");
+		}
+	}
+	
+	public void checkOut(double amount,double hour) {
+		System.out.println("\t----------------------Check Out-------------------");
+		if(enter<=exit) {
+			System.out.println("\tHmm! There is no car in this parking lot.");
+			System.out.println("\t--------------------------------------------------");
+			return;
+		}
+		DecimalFormat f=new DecimalFormat("##.00");
+		
+		double change=fManager.processPayment(amount,hour);
+		String s="\t";
+		if((enter-exit)>0 && change>=0) {
+				exit++;
+				if(change>0) {
+				s=s+"\n\t\tApproved! Your change is "+ f.format(change);
+				System.out.println(s);
+				}
+				else if(change==0.0) {
+					s=s+"\n\t\tApproved! Drive Safe!";
+					System.out.println(s);
+				}
+				openGate();
+				closeGate();
+				System.out.println("\t--------------------------------------------------");
+			
+			}
+		
+		else {
+			s=s+ "\n\tDenied. Your remaining balance is "+ f.format(change);
+			System.out.println(s);
+			System.out.println("\tGate remains blocked");
+			System.out.println("\t--------------------------------------------------");
 		}
 	}
 	
 	
 	public boolean checkOut(double amount,double hour,JTextArea t) {
-	
 		t.setText("");
 		DecimalFormat f=new DecimalFormat("##.00");
 		String s="  Check Out: Duration "+hour+"  Balance "+fManager.getBalance(hour);
@@ -95,29 +154,41 @@ public class EntranceManager{
 			}
 			return true;
 		}
+		
 		else {
 			s=s+ "\n\tDenied. Your remaining balance is "+ f.format(change);
 			t.setText(s);
 			return false;
 		}
 	}
+	
+	
 	public void issueTicket() {
-		System.out.println("Please take the ticket and keep it safe");
+		System.out.println("\tPlease take the ticket and keep it safe");
 	}
+	
+	
 	public void issueTicket(JTextArea t) {
 		t.setText("\n  Please take the ticket and keep it safe.Gate is unlocked");
 	}
+	
+	
 	public int getTotalEnter() {
 		return enter;
 	}
+	
+	
 	public int getTotalExit() {
 		return exit;
 	}
-	public int getEmptyLots() {
+	
+	
+	public int getEmptySpots() {
 		return (MAX-enter+exit);
 	}
+	
+	
 	public int getOccupied() {
 		return (enter-exit);
 	}
-
 }

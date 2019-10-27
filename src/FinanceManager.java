@@ -43,10 +43,26 @@ public class FinanceManager {
 	public double processPayment(double amount,double hours) {
 		DecimalFormat f = new DecimalFormat("##.00");
 		double price = this.pricePerHour*hours;
-		System.out.println("Duration = "+hours);
-		System.out.println("Balance = "+f.format(price));
-		System.out.println("Paid Amount = "+amount);
+		System.out.println("\tDuration = "+hours);
+		System.out.println("\tBalance = "+f.format(price));
+		System.out.println("\tPaid Amount = "+amount);
 		if((amount-price)>=0)
+			rAdd(price);
+		return (amount-price);
+	}
+	public double processPayment(double amount,double hours,double discount) {
+		DecimalFormat f = new DecimalFormat("##.00");
+		double price = this.pricePerHour*hours;
+		System.out.println("Dis ="+discount);
+		double disAmount=0;
+		if(hours>=12) {
+			disAmount=price*discount;
+		}
+		System.out.println("\tDuration = "+hours);
+		System.out.println("\tBalance = "+f.format(price));
+		System.out.println("\tDiscount= - "+disAmount);
+		System.out.println("\tPaid Amount = "+amount);
+		if((amount-price*(1-discount))>=0)
 			rAdd(price);
 		return (amount-price);
 	}

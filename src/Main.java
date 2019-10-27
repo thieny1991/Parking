@@ -13,10 +13,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**ENTRY TO PROGRAM
  * @author nguyen
@@ -24,52 +21,58 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Main {
 		public static int MAX_NUM_OF_LOTS=100;
+		final static int numOfGroups=3;
+		
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		
-		try {
-				//just for testing purpose. We can change to SystemLookAndFeel Later
-	            final UIManager.LookAndFeelInfo[] infos =
-	                    UIManager.getInstalledLookAndFeels();
-	            UIManager.setLookAndFeel(infos[3].getClassName()); 
-	            
-	        } catch (ClassNotFoundException ex) {
-	        } catch (InstantiationException ex) {
-	        } catch (IllegalAccessException ex) {
-	        } catch (UnsupportedLookAndFeelException ex) {
-	        	System.out.println("NO SUPPORT FOR UI");
-	        } catch (Exception system) {
-	            system.printStackTrace();
-	        }
-		
 		welcome();
+		//creating groups of parking lots
+		Group []gs=new Group[3];
+		
+		//POLICY SOURCE:https://jayfencing.com/employee-parking-lot-policy-template-tips/
+		Group groupA= new Group("Ungated",3,2);
+		groupA.setPolicy(new File("UngatedPolicy.txt"));
+		System.out.println("\n Ungated Parking Lots Policy\n"+groupA.getPolicy());
+		
+		Group groupB = new Group("Gated",5,2);
+		groupB.setDiscount(0.15);
+		groupB.setPolicy(new File("GatedPolicy.txt"));
+		System.out.println("\n Gated Parking Lots Policy\n"+groupB.getPolicy());
+		
+		Group groupC= new Group("Garage",10,2);
+		groupC.setDiscount(0.25);
+		groupC.setPolicy(new File("GaragePolicy.txt"));
+		System.out.println("\n Garage Parking Lots Policy\n"+groupC.getPolicy());
+		gs[0]=groupA;
+		gs[1]=groupB;
+		gs[2]=groupC;
+		
+		
 		String fileName=getFileName();
-		ParkingSystem ps= new ParkingSystem(MAX_NUM_OF_LOTS);
-		ps.show();
-		double price = ps.getBasicPrice();
+		ParkingManagement pm=new ParkingManagement(gs,numOfGroups);
+		
 		int flowsInOut=0;
-
 		File day=new File(fileName);
 		boolean exits=day.exists();
 		if(exits&&day.length()!=0) {
 			System.out.println("Start a new day working");
-				startNewDay(ps,day);
+				startNewDay(pm,day);
 		}
 		else {
 				System.out.println("Test file is not exists or is empty. Creating a new test file.");
 				try {
 					flowsInOut=getFlows();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if(createFlowOfCars(day,flowsInOut,price)) {
+				if(createFlowOfCars(day,flowsInOut)) {
 					System.out.println("Create test file success");
 				}
 				else
 					System.out.println("Fail to create the test file ");
 				
-				startNewDay(ps,day);
+				startNewDay(pm,day);
 		}
 	}
 	
@@ -118,39 +121,53 @@ public class Main {
 	 * @param ps
 	 * @param day
 	 */
-	static void startNewDay(ParkingSystem ps, File day) {
+	static void startNewDay(ParkingManagement pm, File day) {
 		System.out.println("-------------------Start new day----------------\n\n");
 		String wait="";
 		double duration=0;
 		double paidAmount=0;
+		String groupName="";
+		int lotIndex=0;
 		try {
 			Scanner sc=new Scanner(day);
 			
 			while(sc.hasNext()) {
 			
 				wait=sc.next();
-				try {
-					Thread.sleep(120);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
+			
 				if(wait.equals("enter")) {
-					ps.carCheckIn();
+					groupName=sc.next();
+					if(!groupName.equals("LA")) {
+						lotIndex=sc.nextInt();
+						pm.carCheckInAt(groupName,lotIndex);
+					}
+					else {
+						Group g=pm.getGroupHasLowestAvailableLot();
+						if(g!=null) {
+							lotIndex=g.hasAvailableLot();
+							String s="";
+							s=s+"\tThe lowest available lot is at "+g.getGroupName();
+							s=s+" Parking Lot "+lotIndex;
+							s=s+"\n\tPrice Per Hour = $"+g.getPricePerHour()+ " /h";
+							System.out.println(s);
+							pm.carCheckInAt(g.getGroupName(),lotIndex);
+						}
+					}
 				}
-				else if(wait.equals("exit")) {
-				
+				if(wait.equals("exit")) {
+					groupName=sc.next();
+					//System.out.println(groupName);
+					lotIndex=sc.nextInt();
 					duration=sc.nextDouble();
 					paidAmount=sc.nextDouble();
-					ps.carCheckOut(paidAmount,duration);
+					pm.carCheckOut(groupName,lotIndex,paidAmount,duration);
 				}
-				
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 	/**This function generates a test file
 	 * @param file
@@ -158,10 +175,21 @@ public class Main {
 	 * @param price
 	 * @return
 	 */
-	static boolean createFlowOfCars(File file,int flows,double price){
+	static boolean createFlowOfCars(File file,int flows){
 		Random random = new Random();
-		int enter=0;
-		int exit=0;
+		int  [][]enter= {{0,0},{0,0},{0,0}};
+		int [][]exit= {{0,0},{0,0},{0,0}};
+		Group []g=new Group[3];
+		//System.out.println("break");
+		Group groupA= new Group("Ungated",3,2);
+		//System.out.println("break");
+		Group groupB = new Group("Gated",5,2);
+		//System.out.println("break");
+		Group groupC= new Group("Garage",10,2);
+		//System.out.println("break");
+		g[0]=groupA;
+		g[1]=groupB;
+		g[2]=groupC;
 		 DecimalFormat f = new DecimalFormat("##.00");
 		 try{
 	            // Create new file
@@ -175,24 +203,48 @@ public class Main {
 
 	            // Write in file
 	            int isEnter=0;
-	            for(int i=0; i<flows;i++) {
+	            int gIndex=0;
+	            int lot=0;
+	            
+	          
+	            for(int j=0;j<flows;j++) {
+	            	
+	            	//enter or exit
 	            	isEnter= random.nextInt(3);
-	            	if(isEnter==0 && exit<=enter) {
-	            		exit++;
+	            	//pick a random Group
+	            	gIndex=random.nextInt(3);
+	            	//pick up a lot
+  	            	lot = random.nextInt(2);
+	  	            	
+	  	            	
+	            	if(isEnter==0 && exit[gIndex][lot]<=enter[gIndex][lot]) {
+	            		exit[gIndex][lot]=exit[gIndex][lot]+1;
+	            		
 	            		double duration = randomDouble(0.5,24);
-	            		double paidAmount =duration*price*0.98 + random.nextInt(10);
-	            		bw.write("exit\t"+f.format(duration)+"\t");
+	            		double paidAmount =duration*g[gIndex].getPricePerHour()*0.98 + random.nextInt(10);
+	            		bw.write("exit\t"+g[gIndex].getGroupName()+"\t"+lot+"\t"+f.format(duration)+"\t");
 	            		bw.write(f.format(paidAmount)+"\n");
 	            		f = new DecimalFormat("#");
 	            	}
+	            
 	            	else {
-	            		bw.write("enter\n");
-	            		enter++;
+	            	   	gIndex=random.nextInt(4);
+	            		bw.write("enter\t");
+	            		if(gIndex<3) {
+	            			bw.write(g[gIndex].getGroupName()+"\t"+lot+"\n");
+	            			enter[gIndex][lot]++;
+	            		}
+		            	else {
+		            		//GET THE LOWEST AVAILABLE LOT
+		            		bw.write("LA\n");
+		            			
+		            	}
+	            		
 	            	}
-	            }
-	      
-	            bw.close();
-	            return true;
+            }
+      
+            bw.close();
+            return true;
 	        }
 	        catch(Exception e){
 	            System.out.println(e);
@@ -211,9 +263,12 @@ public class Main {
 		String s="";
 		s="**************************WELCOME TO MY PROGRAM**************************\n";
 		s=s+"*\t This program will be able to generate a random test file\t*\n";
-		s=s+"*\t Assumming that this parking has 100 parking lots\t\t*\n";
-		s=s+"*\t Each parking space is equiped with detection sensor\t\t*\n";
-		s=s+"*\t The basic price per hour is 5$/hour\t\t\t\t*\n";
+		s=s+"*\t Assumming that this parking system has 3 groups of parking lots\t*\n";
+		s=s+"*\t Ungated Group has two parking lots: Lot 1 and Lot 2. Price = $3/h\t*\n";
+		s=s+"*\t Gated Group has two parking lots: Lot 1 and Lot 2. Price = $5/h\t*\n";
+		s=s+"*\t Garage Group has two parking lots: Lot 1 and Lot 2. Price = $10/h\t*\n";
+		s=s+"*\t In this example of parking system model, each parking lot has 25 spots\t*\n";
+		s=s+"*\t Each parking spot is equiped with detection sensor\t\t*\n";
 		s=s+"*\t To test program:\t\t\t\t\t\t*\n";
 		s=s+"*\t There are 5 pre-created test file day1.txt,day2.txt and so on \t*\n\r";
 		s=s+"*\t You can create a new file or use the exit test files as listed *\n\r";
