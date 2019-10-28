@@ -1,0 +1,150 @@
+exit	Ungated	1	12.41	42.50
+exit	Gated	1	6	36
+enter	Garage	0
+exit	Gated	0	1	14
+enter	Gated	0
+exit	Garage	1	17	167
+enter	Garage	1
+enter	LA
+enter	Gated	1
+enter	Garage	1
+enter	Gated	0
+enter	LA
+enter	Gated	0
+enter	Gated	0
+exit	Ungated	0	22	71
+exit	Garage	0	19	192
+enter	Ungated	0
+enter	Ungated	1
+enter	LA
+enter	Gated	1
+exit	Gated	0	4	27
+enter	LA
+enter	Garage	1
+enter	LA
+enter	LA
+exit	Gated	1	12	60
+enter	Gated	1
+enter	LA
+enter	Garage	0
+enter	Gated	1
+enter	Garage	0
+exit	Garage	0	20	206
+enter	LA
+enter	LA
+enter	LA
+exit	Garage	1	12	117
+enter	Garage	0
+exit	Gated	0	7	38
+exit	Garage	1	19	186
+enter	Ungated	0
+enter	LA
+enter	Gated	0
+enter	Ungated	0
+enter	Gated	1
+enter	Ungated	1
+enter	Ungated	1
+exit	Gated	1	16	83
+enter	Garage	0
+exit	Ungated	1	21	70
+enter	LA
+exit	Ungated	1	9	36
+enter	Garage	0
+enter	Ungated	1
+enter	Gated	0
+exit	Garage	0	4	47
+exit	Garage	1	2	23
+enter	Garage	1
+enter	LA
+enter	LA
+enter	Garage	1
+enter	Garage	0
+enter	Garage	0
+enter	Garage	0
+enter	Garage	0
+exit	Garage	1	15	146
+enter	Garage	0
+exit	Gated	0	2	14
+enter	LA
+exit	Ungated	0	8	28
+enter	LA
+exit	Ungated	1	23	71
+enter	Garage	0
+exit	Garage	1	23	227
+enter	Ungated	1
+exit	Ungated	1	10	35
+exit	Garage	0	3	33
+exit	Gated	0	10	54
+enter	Garage	1
+enter	Ungated	0
+exit	Gated	0	10	48
+exit	Ungated	1	11	34
+enter	Ungated	1
+enter	Garage	0
+enter	LA
+enter	Garage	1
+enter	Ungated	0
+exit	Garage	0	22	216
+enter	Ungated	1
+exit	Garage	0	20	195
+enter	Ungated	0
+enter	Ungated	0
+enter	Gated	0
+enter	LA
+exit	Gated	0	8	41
+enter	Ungated	1
+exit	Gated	0	19	100
+exit	Ungated	1	8	32
+exit	Gated	1	17	82
+enter	Gated	0
+enter	Gated	0
+enter	Ungated	0
+enter	LA
+enter	LA
+enter	Ungated	1
+exit	Garage	0	2	22
+exit	Garage	0	20	194
+enter	Ungated	0
+exit	Ungated	1	6	22
+enter	Garage	0
+exit	Gated	1	9	54
+enter	LA
+enter	LA
+exit	Ungated	0	5	20
+exit	Garage	1	17	171
+enter	Ungated	0
+enter	Ungated	1
+enter	Ungated	0
+enter	Garage	1
+enter	Ungated	0
+exit	Ungated	1	4	14
+exit	Garage	0	11	116
+enter	Gated	0
+enter	Garage	1
+exit	Gated	0	12	61
+enter	LA
+enter	Gated	1
+enter	LA
+exit	Gated	0	15	73
+enter	Gated	0
+exit	Garage	0	1	10
+enter	Garage	1
+enter	Ungated	1
+exit	Garage	0	2	29
+enter	Garage	1
+enter	Ungated	0
+exit	Garage	0	7	82
+enter	Garage	1
+enter	Ungated	1
+exit	Garage	1	18	185
+exit	Gated	0	19	101
+exit	Gated	1	7	38
+enter	Gated	1
+enter	Garage	0
+exit	Ungated	1	1	8
+enter	Gated	0
+exit	Gated	0	21	107
+enter	Gated	1
+enter	Gated	0
+enter	Gated	1
+enter	Garage	0

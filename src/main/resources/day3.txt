@@ -1,0 +1,40 @@
+enter	Gated	1
+enter	Ungated	1
+enter	LA
+enter	Gated	0
+enter	Ungated	1
+enter	LA
+enter	Garage	0
+enter	Garage	0
+enter	LA
+enter	LA
+enter	Garage	1
+enter	LA
+enter	Garage	0
+exit	Garage	0	7.29	79.47
+enter	LA
+enter	Gated	0
+exit	Garage	1	19	189
+exit	Ungated	0	15	48
+exit	Gated	1	23	112
+enter	LA
+exit	Garage	0	3	28
+enter	Gated	0
+enter	LA
+exit	Gated	1	15	79
+enter	Ungated	1
+enter	LA
+enter	Ungated	0
+enter	LA
+enter	Gated	0
+enter	Garage	1
+enter	LA
+exit	Garage	1	11	113
+exit	Gated	0	22	113
+enter	Ungated	0
+exit	Garage	0	8	80
+exit	Garage	1	14	138
+exit	Gated	0	24	116
+enter	LA
+exit	Garage	0	2	18
+enter	Garage	0
